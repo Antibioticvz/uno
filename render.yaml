@@ -6,6 +6,7 @@ services:
     rootDir: .
     buildCommand: |
       npm install --include=dev && \
+      rm -f packages/core/tsconfig.tsbuildinfo && \
       npm run build -w @uno/core && \
       npm run build -w @uno/bot
     startCommand: npm run start -w @uno/bot

@@ -5,7 +5,7 @@ import {
   PublicPlayerState,
   UnoColor,
   getPublicState,
-} from '@uno/core'
+} from '../../../packages/core/dist/index.js'
 
 import { RoomPlayer } from './rooms.js'
 

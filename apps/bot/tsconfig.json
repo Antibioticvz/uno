@@ -2,19 +2,17 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "NodeNext",
-    "composite": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": ".",
+    "baseUrl": "../../",
     "paths": {
-      "@uno/core": ["../../packages/core/dist/index.d.ts"],
-      "@uno/core/*": ["../../packages/core/dist/*.d.ts"]
+      "@uno/core": ["node_modules/@uno/core/dist/index.d.ts"],
+      "@uno/core/*": ["node_modules/@uno/core/dist/*.d.ts"]
     }
   },
   "include": ["src"],
-  "exclude": ["dist", "node_modules"],
-  "references": [{ "path": "../../packages/core" }]
+  "exclude": ["dist", "node_modules"]
 }

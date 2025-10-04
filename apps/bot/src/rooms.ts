@@ -1,4 +1,4 @@
-import { GameState, PlayerId, Result, RoomId, createGame, joinGame, startGame } from '@uno/core'
+import { GameState, PlayerId, Result, RoomId, createGame, joinGame, startGame } from '../../../packages/core/dist/index.js'
 
 import { BotError } from './errors.js'
 

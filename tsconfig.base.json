@@ -19,8 +19,8 @@
     "types": ["node"],
     "paths": {
       "@uno/shared/*": ["shared/*"],
-      "@uno/core": ["packages/core/dist/index.d.ts"],
-      "@uno/core/*": ["packages/core/dist/*.d.ts"]
+      "@uno/core": ["node_modules/@uno/core/dist/index.d.ts"],
+      "@uno/core/*": ["node_modules/@uno/core/dist/*.d.ts"]
     }
   }
 }
