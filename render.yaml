@@ -11,7 +11,7 @@ services:
         value: production
       - key: BOT_TOKEN
         sync: false
-  - type: static
+  - type: web
     name: uno-lite-web
     plan: free
     rootDir: .
