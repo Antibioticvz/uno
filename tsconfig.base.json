@@ -18,9 +18,7 @@
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
-      "@uno/shared/*": ["shared/*"],
-      "@uno/core": ["packages/core/dist/index.d.ts"],
-      "@uno/core/*": ["packages/core/dist/*.d.ts"]
+      "@uno/shared/*": ["shared/*"]
     }
   }
 }
