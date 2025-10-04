@@ -370,8 +370,21 @@ bot.catch((error) => {
 
 console.log('Запуск UNO Lite бота...')
 
-// Start bot without deleting webhook (we're using long-polling, not webhooks)
-bot.start({
-  drop_pending_updates: true,
-  onStart: () => console.log('UNO Lite бот запущен и принимает сообщения!'),
-})
+// Start bot with manual initialization to skip webhook deletion errors
+;(async () => {
+  // First, try to remove webhook (ignore errors if it doesn't exist)
+  try {
+    await bot.api.deleteWebhook({ drop_pending_updates: true })
+  } catch {
+    // Silently ignore - webhook might not exist
+  }
+
+  // Initialize bot info
+  await bot.init()
+  
+  console.log('UNO Lite бот запущен и принимает сообщения!')
+  
+  // Start polling manually (this keeps the process alive)
+  await bot.start()
+})()
+
