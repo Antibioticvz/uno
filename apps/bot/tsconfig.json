@@ -7,7 +7,12 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@uno/core": ["../../packages/core/dist/index.d.ts"],
+      "@uno/core/*": ["../../packages/core/dist/*.d.ts"]
+    }
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules"],
