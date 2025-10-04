@@ -4,7 +4,6 @@ services:
     env: node
     plan: free
     rootDir: .
-    installCommand: npm install
     buildCommand: npm run build -w @uno/bot
     startCommand: npm run start -w @uno/bot
     envVars:
@@ -16,9 +15,8 @@ services:
     name: uno-lite-web
     plan: free
     rootDir: .
-    installCommand: npm install
     buildCommand: npm run build -w @uno/web
-    staticPublishPath: apps/web/dist
+      publishPath: apps/web/dist
     headers:
       - path: /
         name: Cache-Control
