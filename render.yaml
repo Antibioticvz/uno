@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: uno-lite-telegram-bot
+    env: node
+    plan: free
+    rootDir: .
+    installCommand: npm install
+    buildCommand: npm run build -w @uno/bot
+    startCommand: npm run start -w @uno/bot
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BOT_TOKEN
+        sync: false
+  - type: static
+    name: uno-lite-web
+    plan: free
+    rootDir: .
+    installCommand: npm install
+    buildCommand: npm run build -w @uno/web
+    staticPublishPath: apps/web/dist
+    headers:
+      - path: /
+        name: Cache-Control
+        value: max-age=0, no-cache
