@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.tmp/
+.env
+.env.*
+.npmrc
+.vscode/
+.DS_Store
