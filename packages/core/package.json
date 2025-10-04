@@ -9,6 +9,8 @@
     "build": "tsc -b",
     "dev": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "format": "prettier --check \"src/**/*.{ts,tsx}\""
   }
 }
