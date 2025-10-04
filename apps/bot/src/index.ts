@@ -9,7 +9,7 @@ import {
   listPlayableCards,
   passTurn,
   playCard,
-} from '../../../packages/core/dist/index.js'
+} from '@uno/core'
 
 import { loadConfig } from './config.js'
 import { BotError, isBotError } from './errors.js'

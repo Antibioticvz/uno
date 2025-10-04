@@ -6,7 +6,7 @@ import {
   createGame,
   joinGame,
   startGame,
-} from '../../../packages/core/dist/index.js'
+} from '@uno/core'
 
 import { BotError } from './errors.js'
 
