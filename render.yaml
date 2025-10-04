@@ -14,7 +14,6 @@ services:
   - type: web
     runtime: static
     name: uno-lite-web
-    plan: free
     rootDir: .
     buildCommand: npm run build -w @uno/web
     staticPublishPath: apps/web/dist
