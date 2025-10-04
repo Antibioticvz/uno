@@ -4,6 +4,7 @@
     "composite": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "module": "NodeNext",
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
     "jsx": "react-jsx",
     "rootDir": "src",
