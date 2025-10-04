@@ -1,0 +1,32 @@
+{
+  "name": "uno",
+  "private": true,
+  "version": "0.1.0",
+  "description": "UNO Lite monorepo",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @uno/core && npm run build -w @uno/bot && npm run build -w @uno/web",
+    "dev": "npm run dev -w @uno/bot",
+    "dev:web": "npm run dev -w @uno/web",
+    "lint": "npm run lint -ws",
+    "format": "npm run format -ws",
+    "test": "npm run test -ws"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "@types/node": "^24.6.2",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^6.1.1",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.0"
+  }
+}

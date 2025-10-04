@@ -1,0 +1,21 @@
+{
+  "name": "@uno/bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "format": "prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@uno/core": "file:../../packages/core",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.22.4",
+    "zod": "^3.23.8"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@uno/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "format": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@uno/core": "file:../../packages/core",
+    "@radix-ui/react-scroll-area": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.472.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.2",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.13",
+    "tailwindcss-animate": "^1.0.7",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

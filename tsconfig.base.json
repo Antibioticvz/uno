@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2021"],
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@uno/shared/*": ["shared/*"],
+      "@uno/core": ["node_modules/@uno/core/dist/index.d.ts"],
+      "@uno/core/*": ["node_modules/@uno/core/dist/*.d.ts"]
+    }
+  }
+}
