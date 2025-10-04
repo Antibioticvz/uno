@@ -368,16 +368,10 @@ bot.catch((error) => {
   }
 })
 
-console.log('UNO Lite бот запущен.')
+console.log('Запуск UNO Lite бота...')
 
-// Start bot with error handling for webhook deletion
-bot.start().catch((error) => {
-  // Ignore 404 errors from deleteWebhook - webhook doesn't exist in long-polling mode
-  if (error instanceof GrammyError && error.error_code === 404) {
-    console.log('Webhook не установлен (нормально для long-polling). Бот работает.')
-    return
-  }
-  console.error('Ошибка запуска бота:', error)
-  throw error
+// Start bot without deleting webhook (we're using long-polling, not webhooks)
+bot.start({
+  drop_pending_updates: true,
+  onStart: () => console.log('UNO Lite бот запущен и принимает сообщения!'),
 })
-
