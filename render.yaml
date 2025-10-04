@@ -16,7 +16,7 @@ services:
     plan: free
     rootDir: .
     buildCommand: npm run build -w @uno/web
-    publishPath: apps/web/dist
+    staticPublishPath: apps/web/dist
     headers:
       - path: /
         name: Cache-Control
