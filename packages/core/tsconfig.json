@@ -4,6 +4,7 @@
     "composite": true,
     "declaration": true,
     "declarationMap": true,
+    "module": "NodeNext",
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src"

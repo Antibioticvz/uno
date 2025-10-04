@@ -45,20 +45,20 @@ const unwrapResult = <T>(result: Result<T>): T => {
   return result.value
 }
 
-const broadcast = async (roomPlayers: RoomPlayer[], message: string) => {
+const broadcast = async (roomPlayers: RoomPlayer[], message: string): Promise<void> => {
   await Promise.all(roomPlayers.map((player) => bot.api.sendMessage(player.chatId, message)))
 }
 
-const sendHand = async (player: RoomPlayer, game: GameState) => {
+const sendHand = async (player: RoomPlayer, game: GameState): Promise<void> => {
   const hand = unwrapResult(getPlayerHand(game, player.id))
   await bot.api.sendMessage(player.chatId, `Ваши карты:\n${formatHand(hand)}`)
 }
 
-const refreshHandForAll = async (roomPlayers: RoomPlayer[], game: GameState) => {
+const refreshHandForAll = async (roomPlayers: RoomPlayer[], game: GameState): Promise<void> => {
   await Promise.all(roomPlayers.map((player) => sendHand(player, game)))
 }
 
-const postPublicState = async (roomPlayers: RoomPlayer[], roomState: GameState) => {
+const postPublicState = async (roomPlayers: RoomPlayer[], roomState: GameState): Promise<void> => {
   const message = formatPublicState(roomState.roomId, roomState, roomPlayers)
   await broadcast(roomPlayers, message)
 }
@@ -86,7 +86,7 @@ const buildActionKeyboard = (game: GameState, playerId: PlayerId): InlineKeyboar
   return keyboard
 }
 
-const promptActivePlayer = async (roomPlayers: RoomPlayer[], game: GameState) => {
+const promptActivePlayer = async (roomPlayers: RoomPlayer[], game: GameState): Promise<void> => {
   const activeId = game.turn?.activePlayerId
   if (!activeId) {
     return
@@ -247,7 +247,7 @@ bot.command('leave', async (ctx) => {
   }
 })
 
-const handlePlay = async (player: RoomPlayer, cardId: string) => {
+const handlePlay = async (player: RoomPlayer, cardId: string): Promise<void> => {
   const mapping = rooms.getRoomByPlayer(player.id)
   if (!mapping) {
     throw new BotError('ROOM_NOT_FOUND', 'Вы не находитесь в комнате.')
@@ -275,7 +275,7 @@ const handlePlay = async (player: RoomPlayer, cardId: string) => {
   await promptActivePlayer(players, room.game)
 }
 
-const handleDraw = async (player: RoomPlayer) => {
+const handleDraw = async (player: RoomPlayer): Promise<void> => {
   const mapping = rooms.getRoomByPlayer(player.id)
   if (!mapping) {
     throw new BotError('ROOM_NOT_FOUND', 'Вы не находитесь в комнате.')
@@ -300,7 +300,7 @@ const handleDraw = async (player: RoomPlayer) => {
   await promptActivePlayer(players, room.game)
 }
 
-const handlePass = async (player: RoomPlayer) => {
+const handlePass = async (player: RoomPlayer): Promise<void> => {
   const mapping = rooms.getRoomByPlayer(player.id)
   if (!mapping) {
     throw new BotError('ROOM_NOT_FOUND', 'Вы не находитесь в комнате.')
