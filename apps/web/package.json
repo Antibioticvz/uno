@@ -12,6 +12,7 @@
     "test": "vitest"
   },
   "dependencies": {
+  "@uno/core": "file:../../packages/core",
     "@radix-ui/react-scroll-area": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "class-variance-authority": "^0.7.0",

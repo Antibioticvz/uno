@@ -13,6 +13,7 @@
     "format": "prettier --check \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+  "@uno/core": "file:../../packages/core",
     "dotenv": "^16.4.5",
     "grammy": "^1.22.4",
     "zod": "^3.23.8"
