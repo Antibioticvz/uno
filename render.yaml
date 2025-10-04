@@ -4,7 +4,10 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build -w @uno/bot
+    buildCommand: |
+      npm install --include=dev && \
+      npm run build -w @uno/core && \
+      npm run build -w @uno/bot
     startCommand: npm run start -w @uno/bot
     envVars:
       - key: NODE_ENV

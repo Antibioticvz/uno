@@ -16,8 +16,11 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "types": ["node"],
     "paths": {
-      "@uno/shared/*": ["shared/*"]
+      "@uno/shared/*": ["shared/*"],
+      "@uno/core": ["packages/core/src/index.ts"],
+      "@uno/core/*": ["packages/core/src/*"]
     }
   }
 }
