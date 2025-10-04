@@ -1,16 +1,6 @@
-import { useMemo, type FC } from 'react';
-import { ExternalLink, GamepadIcon, MessageCircle, ServerIcon, Zap } from 'lucide-react';
+import { ExternalLink, GamepadIcon, MessageCircle, ServerIcon, Zap } from 'lucide-react'
+import { useMemo, type FC } from 'react'
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from './components/ui/card.js';
-import { ScrollArea } from './components/ui/scroll-area.js';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs.js';
-import { Button } from './components/ui/button.js';
 import {
   GameState,
   Result,
@@ -18,40 +8,44 @@ import {
   createGame,
   getPublicState,
   joinGame,
-  startGame
-} from '@uno/core';
+  startGame,
+} from '@uno/core'
+import { Button } from './components/ui/button.js'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card.js'
+import { ScrollArea } from './components/ui/scroll-area.js'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs.js'
 
 const COLORS: Record<UnoColor, string> = {
   red: '🔴',
   green: '🟢',
   blue: '🔵',
-  yellow: '🟡'
-};
+  yellow: '🟡',
+}
 
 const unwrap = <T,>(result: Result<T>): T => {
   if (!result.ok) {
-    throw new Error(result.error.message);
+    throw new Error(result.error.message)
   }
-  return result.value;
-};
+  return result.value
+}
 
 const createDemoState = (): GameState => {
-  const game = createGame('DEMO1', 'alice');
-  unwrap(joinGame(game, 'bob'));
-  unwrap(startGame(game, () => 0.42));
-  game.players[0].hand = game.players[0].hand.slice(0, 5);
-  game.players[1].hand = game.players[1].hand.slice(0, 5);
-  return game;
-};
+  const game = createGame('DEMO1', 'alice')
+  unwrap(joinGame(game, 'bob'))
+  unwrap(startGame(game, () => 0.42))
+  game.players[0].hand = game.players[0].hand.slice(0, 5)
+  game.players[1].hand = game.players[1].hand.slice(0, 5)
+  return game
+}
 
-const formatCard = (color: UnoColor, value: number): string => `${COLORS[color]}${value}`;
+const formatCard = (color: UnoColor, value: number): string => `${COLORS[color]}${value}`
 
 const CommandRow: FC<{ command: string; description: string }> = ({ command, description }) => (
   <div className="flex flex-col gap-1 rounded-lg border border-border bg-card/60 p-4">
     <code className="font-mono text-sm text-primary">{command}</code>
     <span className="text-sm text-muted-foreground">{description}</span>
   </div>
-);
+)
 
 const rules = [
   'Колода: 76 карт (0 по одной, 1-9 по две каждого цвета).',
@@ -59,39 +53,39 @@ const rules = [
   'Ход: сыграть карту того же цвета или номинала, либо взять одну карту.',
   'После взятия карты можно сразу сыграть её, если подходит, иначе пас.',
   'Побеждает игрок, избавившийся от всех карт.',
-  'Если колода кончилась — тасуем сброс (кроме верхней карты).'
-];
+  'Если колода кончилась — тасуем сброс (кроме верхней карты).',
+]
 
 const architectureCards = [
   {
     title: 'Игровое ядро',
     description:
       'Чистые функции с типами TypeScript. Генерация колоды, валидация ходов, публичные представления.',
-    icon: <GamepadIcon className="h-5 w-5 text-primary" />
+    icon: <GamepadIcon className="h-5 w-5 text-primary" />,
   },
   {
     title: 'Telegram-бот',
     description:
       'grammY + inline-кнопки. Управление комнатой, очередностью ходов, рассылка состояния и рук.',
-    icon: <MessageCircle className="h-5 w-5 text-primary" />
+    icon: <MessageCircle className="h-5 w-5 text-primary" />,
   },
   {
     title: 'Web-панель',
     description:
       'Vite + React + Tailwind + shadcn/ui. Документация и демонстрация состояния партии.',
-    icon: <ServerIcon className="h-5 w-5 text-primary" />
-  }
-];
+    icon: <ServerIcon className="h-5 w-5 text-primary" />,
+  },
+]
 
 const App: FC = () => {
-  const demoState = useMemo(createDemoState, []);
-  const publicState = useMemo(() => getPublicState(demoState), [demoState]);
+  const demoState = useMemo(createDemoState, [])
+  const publicState = useMemo(() => getPublicState(demoState), [demoState])
 
   const cardGroups = demoState.players.map((player) => ({
     playerId: player.id,
     cards: player.hand.map((card) => formatCard(card.color, card.value)),
-    count: player.hand.length
-  }));
+    count: player.hand.length,
+  }))
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -105,7 +99,8 @@ const App: FC = () => {
               Минимальная мультиплеерная UNO для Telegram
             </h1>
             <p className="max-w-xl text-base text-muted-foreground">
-              Двухпользовательский Telegram-бот с игровым ядром на TypeScript и web-панелью. Код написан по принципам KISS, DRY и SOLID, без использования <code>any</code>.
+              Двухпользовательский Telegram-бот с игровым ядром на TypeScript и web-панелью. Код
+              написан по принципам KISS, DRY и SOLID, без использования <code>any</code>.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
@@ -161,20 +156,32 @@ const App: FC = () => {
           <TabsContent value="commands">
             <ScrollArea className="h-72 rounded-lg border border-border/70 bg-white/80 p-6">
               <div className="grid gap-4">
-                <CommandRow command="/create" description="Создать новую комнату и получить код приглашения." />
+                <CommandRow
+                  command="/create"
+                  description="Создать новую комнату и получить код приглашения."
+                />
                 <CommandRow
                   command="/join <код>"
                   description="Подключиться ко второй позиции с использованием кода комнаты."
                 />
-                <CommandRow command="/hand" description="Отобразить вашу текущую руку (приватно)." />
+                <CommandRow
+                  command="/hand"
+                  description="Отобразить вашу текущую руку (приватно)."
+                />
                 <CommandRow
                   command="/play <id>"
                   description="Сыграть карту по идентификатору — доступен также выбор через кнопки."
                 />
-                <CommandRow command="/draw" description="Взять одну карту из колоды, если нет подходящей." />
+                <CommandRow
+                  command="/draw"
+                  description="Взять одну карту из колоды, если нет подходящей."
+                />
                 <CommandRow command="/pass" description="Передать ход после взятия карты." />
                 <CommandRow command="/state" description="Показать публичное состояние стола." />
-                <CommandRow command="/leave" description="Покинуть комнату и завершить текущую партию." />
+                <CommandRow
+                  command="/leave"
+                  description="Покинуть комнату и завершить текущую партию."
+                />
               </div>
             </ScrollArea>
           </TabsContent>
@@ -182,7 +189,9 @@ const App: FC = () => {
             <Card className="border-border/70 bg-white/80">
               <CardHeader>
                 <CardTitle>UNO Lite — базовые правила</CardTitle>
-                <CardDescription>Сокращённая версия оригинальной UNO, оптимизированная под чат-бота.</CardDescription>
+                <CardDescription>
+                  Сокращённая версия оригинальной UNO, оптимизированная под чат-бота.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -203,8 +212,9 @@ const App: FC = () => {
                   <CardTitle>Стол DEMO1</CardTitle>
                   {publicState.topDiscard ? (
                     <CardDescription>
-                      Верхняя карта: {formatCard(publicState.topDiscard.color, publicState.topDiscard.value)} · Ходит:{' '}
-                      {publicState.activePlayerId}
+                      Верхняя карта:{' '}
+                      {formatCard(publicState.topDiscard.color, publicState.topDiscard.value)} ·
+                      Ходит: {publicState.activePlayerId}
                     </CardDescription>
                   ) : (
                     <CardDescription>Партия готовится к старту.</CardDescription>
@@ -212,7 +222,10 @@ const App: FC = () => {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                   {cardGroups.map((group) => (
-                    <div key={group.playerId} className="rounded-lg border border-border/60 bg-muted/40 p-4">
+                    <div
+                      key={group.playerId}
+                      className="rounded-lg border border-border/60 bg-muted/40 p-4"
+                    >
                       <div className="flex items-center justify-between text-sm font-semibold">
                         <span>{group.playerId}</span>
                         <span>{group.count} карт</span>
@@ -231,17 +244,21 @@ const App: FC = () => {
               <Card className="border-border/70 bg-white/90">
                 <CardHeader>
                   <CardTitle>Технологии</CardTitle>
-                  <CardDescription>Ядро переиспользуется между ботом и web-панелью.</CardDescription>
+                  <CardDescription>
+                    Ядро переиспользуется между ботом и web-панелью.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm text-muted-foreground">
                   <p>
-                    <strong>Node.js + TypeScript:</strong> строгие типы, отсутствие <code>any</code>.
+                    <strong>Node.js + TypeScript:</strong> строгие типы, отсутствие <code>any</code>
+                    .
                   </p>
                   <p>
                     <strong>grammY:</strong> удобный API бота, inline-кнопки, обработка ошибок.
                   </p>
                   <p>
-                    <strong>React + Tailwind + shadcn/ui:</strong> быстрый интерфейс, готовые UI-паттерны.
+                    <strong>React + Tailwind + shadcn/ui:</strong> быстрый интерфейс, готовые
+                    UI-паттерны.
                   </p>
                   <p>
                     <strong>Vitest:</strong> модульные тесты игрового ядра для гарантии правил.
@@ -263,7 +280,7 @@ const App: FC = () => {
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
