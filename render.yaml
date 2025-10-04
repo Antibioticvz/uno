@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install && npm run build -w @uno/bot
+    buildCommand: npm install --include=dev && npm run build -w @uno/bot
     startCommand: npm run start -w @uno/bot
     envVars:
       - key: NODE_ENV
@@ -15,7 +15,7 @@ services:
     runtime: static
     name: uno-lite-web
     rootDir: .
-    buildCommand: npm install && npm run build -w @uno/web
+    buildCommand: npm install --include=dev && npm run build -w @uno/web
     staticPublishPath: apps/web/dist
     headers:
       - path: /
