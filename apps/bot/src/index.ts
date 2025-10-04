@@ -17,6 +17,17 @@ import { formatCard, formatHand, formatPlayerLabel, formatPublicState } from './
 import { RoomManager, RoomPlayer } from './rooms.js'
 
 const config = loadConfig()
+
+// Validate BOT_TOKEN format
+if (!config.BOT_TOKEN || config.BOT_TOKEN.length < 20) {
+  console.error('ОШИБКА: BOT_TOKEN недействителен или не установлен!')
+  console.error('Длина токена:', config.BOT_TOKEN?.length ?? 0)
+  console.error('Первые символы:', config.BOT_TOKEN?.substring(0, 10) ?? 'N/A')
+  process.exit(1)
+}
+
+console.log('BOT_TOKEN загружен, длина:', config.BOT_TOKEN.length)
+
 const bot = new Bot(config.BOT_TOKEN)
 const rooms = new RoomManager()
 
@@ -381,10 +392,9 @@ console.log('Запуск UNO Lite бота...')
 
   // Initialize bot info
   await bot.init()
-  
+
   console.log('UNO Lite бот запущен и принимает сообщения!')
-  
+
   // Start polling manually (this keeps the process alive)
   await bot.start()
 })()
-
