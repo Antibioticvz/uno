@@ -7,7 +7,7 @@ const CARDS_PER_PLAYER = 7
 const ok = <T>(value: T): Result<T> => ({ ok: true, value })
 const err = <T>(error: GameError): Result<T> => ({ ok: false, error })
 
-const now = () => Date.now()
+const now = (): number => Date.now()
 
 const findPlayerIndex = (state: GameState, playerId: PlayerId): number =>
   state.players.findIndex((player) => player.id === playerId)
@@ -22,8 +22,11 @@ const getNextPlayerId = (state: GameState, currentId: PlayerId): PlayerId => {
   return order[nextIndex]
 }
 
-const isCardPlayable = (card: Card, currentColor?: Card['color'], currentValue?: Card['value']) =>
-  card.color === currentColor || card.value === currentValue
+const isCardPlayable = (
+  card: Card,
+  currentColor?: Card['color'],
+  currentValue?: Card['value'],
+): boolean => card.color === currentColor || card.value === currentValue
 
 const ensureActivePlayer = (state: GameState, playerId: PlayerId): Result<void> => {
   if (!state.turn || state.turn.activePlayerId !== playerId) {
