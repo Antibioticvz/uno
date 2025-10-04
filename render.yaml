@@ -12,6 +12,7 @@ services:
       - key: BOT_TOKEN
         sync: false
   - type: web
+    runtime: static
     name: uno-lite-web
     plan: free
     rootDir: .
