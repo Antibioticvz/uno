@@ -164,8 +164,10 @@ bot.command('create', async (ctx) => {
 })
 
 bot.command('join', async (ctx) => {
-  const [, code] = ctx.match ?? []
-  const roomCode = code?.trim().toUpperCase()
+  const match = ctx.match
+  const rawCode =
+    typeof match === 'string' ? match : Array.isArray(match) ? (match[1] ?? match[0]) : undefined
+  const roomCode = rawCode?.trim().toUpperCase()
   if (!roomCode) {
     await ctx.reply('Укажите код комнаты: /join ABCDE')
     return
